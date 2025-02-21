@@ -1,19 +1,15 @@
 interface SymbolPartProps {
     size?: number
+    suit: number[]
 }
 
-const SymbolPart = ({ size = 3 }: SymbolPartProps) => {
+const SymbolPart = ({ size = 3, suit }: SymbolPartProps) => {
 
-    let suit: number[] = []
-    for (let i = 0; i < size * size; i++) {
-        Math.floor(Math.random() * 2) ? suit.push(1) : suit.push(0)
-    }
-    
     return (
         <div className="flex flex-col">
             {
                 Array.from({ length: size }, (_, i) => (
-                    <div key={i} className="flex" id={suit.join("")}>
+                    <div key={i} className="flex">
                         {
                             Array.from({ length: size }, (_, j) => (
                                 <div
