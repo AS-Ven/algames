@@ -4,7 +4,7 @@ interface SymbolGridProps {
     difficulty?: number
 }
 
-const SymbolGrid = ({ difficulty = 3 }: SymbolGridProps) => {
+const SymbolGrid = ({ difficulty = 1 }: SymbolGridProps) => {
     return (
         <div className="flex flex-wrap gap-4 justify-center items-center h-screen">
             {
