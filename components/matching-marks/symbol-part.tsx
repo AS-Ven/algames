@@ -14,7 +14,7 @@ const SymbolPart = ({ size = 3 }: SymbolPartProps) => {
                                 <div
                                     key={`${i}.${j}`}
                                     className={`
-                                        w-8 h-8 flex
+                                        w-2 h-2 flex
                                         ${Math.floor(Math.random() * 2) == 1 ? 'bg-white' : ''}
                                         `}
                                 ></div>
