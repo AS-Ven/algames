@@ -9,9 +9,8 @@ const SymbolGrid = ({ difficulty = 3 }: SymbolGridProps) => {
     let suit: number[] = []
     let suitList: number[][] = []
     let peerSuit: number[] = []
-    let peer: number[] = []
 
-    for (let i = 0; i < difficulty * difficulty; i++) {
+    for (let i = 0; i < difficulty * difficulty - 2; i++) {
         suit = []
         for (let i = 0; i < 36; i++) {
             Math.floor(Math.random() * 2) ? suit.push(1) : suit.push(0)
@@ -24,12 +23,8 @@ const SymbolGrid = ({ difficulty = 3 }: SymbolGridProps) => {
     }
 
     for (let i = 0; i < 2; i++) {
-        peer.push(Math.floor(Math.random() * (difficulty * difficulty)))
-        suitList[peer[i]] = peerSuit
-    }
-
-    console.log(peer);
-    
+        suitList.splice(Math.floor(Math.random() * (suitList.length + 1)), 0, peerSuit)
+    }    
 
     return (
         <div className="flex flex-wrap flex-col gap-4 justify-center items-center h-screen">
