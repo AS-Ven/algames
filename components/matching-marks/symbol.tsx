@@ -1,29 +1,19 @@
 import SymbolPart from "./symbol-part";
 
-const Symbol = () => {
-    
-    let suit: string[] = []
-    let size: number = 3
+interface SymbolProps {
+    suit: number[]
+}
 
-    let suitTopLeft: number[] = []
-    let suitTopRight: number[] = []
-    let suitBottomLeft: number[] = []
-    let suitBottomRight: number[] = []
+const Symbol = ({ suit }: SymbolProps) => {
 
-    for (let i = 0; i < size * size; i++) {
-        Math.floor(Math.random() * 2) ? suitTopLeft.push(1) : suitTopLeft.push(0)
-        Math.floor(Math.random() * 2) ? suitTopRight.push(1) : suitTopRight.push(0)
-        Math.floor(Math.random() * 2) ? suitBottomLeft.push(1) : suitBottomLeft.push(0)
-        Math.floor(Math.random() * 2) ? suitBottomRight.push(1) : suitBottomRight.push(0)
-    }
 
-    suit.push(suitTopLeft.join(""))
-    suit.push(suitTopRight.join(""))
-    suit.push(suitBottomLeft.join(""))
-    suit.push(suitBottomRight.join(""))
+    let suitTopLeft: number[] = suit.slice(0, 9)
+    let suitTopRight: number[] = suit.slice(9, 18)
+    let suitBottomLeft: number[] = suit.slice(18, 27)
+    let suitBottomRight: number[] = suit.slice(27, 36)
 
     return (
-        <div className="flex flex-wrap flex-col gap-2 border-white border-4 p-2 bg-red-700" id={suit.join("")}>
+        <div className="flex flex-wrap flex-col gap-2 border-white border-4 p-2 bg-red-700">
             <div className="flex gap-2">
                 <SymbolPart suit={suitTopLeft}></SymbolPart>
                 <SymbolPart suit={suitTopRight}></SymbolPart>
