@@ -1,9 +1,3 @@
-// Check the value
-
-// Change color
-
-// Reset the grid
-
 let guesses: string[] = []
 
 export function checkGuesses() {
@@ -12,8 +6,10 @@ export function checkGuesses() {
 
     if (guesses[0] == guesses[1]) {
         console.log("Well Played !");
+        return 1
     } else {
         console.log("Game Over");
+        return 0
     }
 }
 
@@ -25,4 +21,8 @@ export function addGuess(guess: string) {
 export function removeGuess() {
     guesses.pop()
     checkGuesses()
+}
+
+export function refresh() {
+    console.log("Refreshing !")
 }
