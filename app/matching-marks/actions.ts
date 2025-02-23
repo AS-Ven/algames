@@ -1,16 +1,20 @@
 let guesses: string[] = []
 
 export function checkGuesses() {
-    if (guesses.length != 2)
+    if (!hasGuessed())
         return
 
     if (guesses[0] == guesses[1]) {
         console.log("Well Played !");
-        return 1
     } else {
         console.log("Game Over");
-        return 0
     }
+}
+
+export function hasGuessed() {
+    if (guesses.length != 2)
+        return false
+    return true
 }
 
 export function addGuess(guess: string) {
@@ -21,6 +25,10 @@ export function addGuess(guess: string) {
 export function removeGuess() {
     guesses.pop()
     checkGuesses()
+}
+
+export function removeGuesses() {
+    guesses = []
 }
 
 export function refresh() {
