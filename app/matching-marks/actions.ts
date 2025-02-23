@@ -1,4 +1,7 @@
+import { createSuitListWithPeer } from "./controller";
+
 let guesses: string[] = []
+let suit: number[][] = []
 
 export function checkGuesses() {
     if (!hasGuessed())
@@ -9,6 +12,14 @@ export function checkGuesses() {
     } else {
         console.log("Game Over");
     }
+}
+
+export function getSuit() {
+    return suit
+}
+
+export function setSuit(length: number) {
+    suit = createSuitListWithPeer(length)
 }
 
 export function hasGuessed() {

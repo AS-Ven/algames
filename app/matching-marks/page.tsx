@@ -1,14 +1,14 @@
 import SymbolGrid from "@/components/matching-marks/symbol-grid";
-import { createSuitListWithPeer } from "./controller";
+import { setSuit } from "./actions";
 
 const MatchingMarks = () => {
 
-    let suitListLenght: number = 3
-    let suitList: number[][] = createSuitListWithPeer(suitListLenght * suitListLenght)
+    let suitListlength: number = 3
+    setSuit(suitListlength * suitListlength)
 
     return (
         <main className="flex justify-center items-center h-screen">
-            <SymbolGrid suitList={suitList}></SymbolGrid>
+            <SymbolGrid></SymbolGrid>
         </main>
     )
 }
