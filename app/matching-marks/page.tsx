@@ -1,14 +1,14 @@
 import SymbolGrid from "@/components/matching-marks/symbol-grid";
-import { setSuit } from "./actions";
 
 const MatchingMarks = () => {
 
-    let suitListlength: number = 3
-    setSuit(suitListlength * suitListlength)
+    const gridSize: number = 3
 
     return (
         <main className="flex justify-center items-center h-screen">
-            <SymbolGrid></SymbolGrid>
+            <SymbolGrid
+                size={gridSize}
+            />
         </main>
     )
 }

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import SymbolPart from "./symbol-part";
-import { addGuess, removeGuess } from "@/app/matching-marks/actions";
 
 interface SymbolProps {
     suit: number[]
@@ -10,23 +9,34 @@ interface SymbolProps {
 
 const Symbol = ({ suit }: SymbolProps) => {
 
-    let suitTopLeft: number[] = suit.slice(0, 9)
-    let suitTopRight: number[] = suit.slice(9, 18)
-    let suitBottomLeft: number[] = suit.slice(18, 27)
-    let suitBottomRight: number[] = suit.slice(27, 36)
-    
     const [selected, setSelected] = useState(false)
 
+    const suitTopLeft: number[] = suit.slice(0, 9)
+    const suitTopRight: number[] = suit.slice(9, 18)
+    const suitBottomLeft: number[] = suit.slice(18, 27)
+    const suitBottomRight: number[] = suit.slice(27, 36)
+
+    const handleOnClick = () => {
+        if (!selected) {
+            if (!sessionStorage.getItem("matching-marks_0")) {
+                sessionStorage.setItem("matching-marks_0", suit.join(""))
+            } else {
+                sessionStorage.setItem("matching-marks_1", suit.join(""))
+            }
+        } else {
+            sessionStorage.removeItem("matching-marks_0")
+        }
+
+        setSelected(!selected)
+    }
+
+    console.log("render");
+    
+    
     return (
         <button
-            onClick={() => 
-                {
-                    setSelected(!selected),
-                    selected ? removeGuess() : addGuess(suit.join(""))
-                }
-            }
+            onClick={handleOnClick}
             className={`flex flex-wrap flex-col gap-2 border-white border-4 p-2 ${selected ? "bg-blue-700" : "bg-red-700"}`}
-            id={suit.join("")}
         >
             <div className="flex gap-2">
                 <SymbolPart suit={suitTopLeft}></SymbolPart>
