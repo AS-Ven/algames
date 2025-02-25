@@ -24,11 +24,14 @@ const Symbol = ({ suit }: SymbolProps) => {
                 sessionStorage.setItem("matching-marks_1", suit.join(""))
             }
         } else {
-            // sessionStorage.removeItem("matching-marks_0")
+            sessionStorage.removeItem("matching-marks_0")
         }
 
         setSelected(!selected)
     }
+
+    console.log("render");
+    
     
     return (
         <button

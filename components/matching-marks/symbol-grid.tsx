@@ -41,9 +41,9 @@ const createSuitListWithPeer = (length: number) => {
 const SymbolGrid = ({ size }: SymbolGridProps) => {
 
     const [isMounted, setIsMounted] = useState(false);
-
     const [suit, setSuit] = useState(createSuitListWithPeer(size * size))
     const [score, setScore] = useState(0)
+    const [seed, setSeed] = useState(0)
 
     useEffect(() => {
         setIsMounted(true)
@@ -63,12 +63,14 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
         sessionStorage.removeItem("matching-marks_0")
         sessionStorage.removeItem("matching-marks_1")
         setSuit(createSuitListWithPeer(size * size))
+        setSeed(Math.random())
     }
 
     return (
         <div
             className="flex flex-wrap flex-col gap-4 justify-center items-center h-screen"
             onClick={handleOnClick}
+            key={seed}
         >
             {
                 Array.from({ length: size }, (_, i) => (
@@ -81,7 +83,7 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
                                 />
                             ))
                         }
-                    </div>
+                    </div>  
                 ))
             }
         </div>

@@ -8,7 +8,7 @@ const MatchingMarks = () => {
         <main className="flex justify-center items-center h-screen">
             <SymbolGrid
                 size={gridSize}
-            ></SymbolGrid>
+            />
         </main>
     )
 }
