@@ -47,7 +47,11 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
 
     useEffect(() => {
         setIsMounted(true)
-    }, [isMounted])    
+    }, [isMounted])
+    
+    useEffect(() => {
+        sessionStorage.setItem("matching-marks_score", score.toString())
+    }, [score])
 
     if (!isMounted) return null; 
 
@@ -55,10 +59,8 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
         if (!sessionStorage.getItem("matching-marks_1"))
             return
 
-        if (sessionStorage.getItem("matching-marks_0") == sessionStorage.getItem("matching-marks_0")) {
-            setScore(+score)
-            sessionStorage.setItem("matching-marks_score", score.toString())
-        }
+        if (sessionStorage.getItem("matching-marks_0") == sessionStorage.getItem("matching-marks_1"))
+            setScore(score + 1)
 
         sessionStorage.removeItem("matching-marks_0")
         sessionStorage.removeItem("matching-marks_1")
@@ -68,7 +70,7 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
 
     return (
         <div
-            className="flex flex-wrap flex-col gap-4 justify-center items-center h-screen"
+            className="flex flex-wrap flex-col gap-4 justify-center items-center"
             onClick={handleOnClick}
             key={seed}
         >
