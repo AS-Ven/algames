@@ -21,8 +21,10 @@ const Clock = ({ initTime }: ClockProps) => {
     }, [time])
 
     return (
-        <div>{toTime(time)}</div>
-    );
+        <p className="text-6xl">
+            {toTime(time)}
+        </p>
+    )
 }
  
 export default Clock;

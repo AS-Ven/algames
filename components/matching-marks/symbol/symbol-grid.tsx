@@ -59,12 +59,8 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
         if (!sessionStorage.getItem("matching-marks_1"))
             return
 
-        if (sessionStorage.getItem("matching-marks_0") == sessionStorage.getItem("matching-marks_1")) {
+        if (sessionStorage.getItem("matching-marks_0") == sessionStorage.getItem("matching-marks_1"))
             setScore(score + 1)
-            console.log("Scored")
-        } else {
-            console.log("Game over")
-        }
 
         sessionStorage.removeItem("matching-marks_0")
         sessionStorage.removeItem("matching-marks_1")
