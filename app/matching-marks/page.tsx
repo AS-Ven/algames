@@ -7,6 +7,9 @@ const MatchingMarks = () => {
 
     return (
         <main className="flex flex-col justify-center items-center h-screen">
+            <Clock
+                initTime={100}
+            />
             <SymbolGrid
                 size={gridSize}
             />
