@@ -29,9 +29,6 @@ const Symbol = ({ suit }: SymbolProps) => {
 
         setSelected(!selected)
     }
-
-    console.log("render");
-    
     
     return (
         <button
