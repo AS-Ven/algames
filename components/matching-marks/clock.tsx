@@ -1,5 +1,6 @@
 'use client'
 
+import { toTime } from "@/utils/time";
 import { useEffect, useState } from "react";
 
 interface ClockProps {
@@ -12,13 +13,13 @@ const Clock = ({ initTime }: ClockProps) => {
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-        setTime(time => time - 1);
-        }, 1000);
+        setTime(time => time - 1)
+        }, 1000)
         return () => clearInterval(intervalId);
-    }, []);
+    }, [time])
 
     return (
-        <div>{time}</div>
+        <div>{toTime(time)}</div>
     );
 }
  
