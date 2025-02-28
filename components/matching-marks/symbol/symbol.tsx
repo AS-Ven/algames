@@ -2,14 +2,18 @@
 
 import { useState } from "react";
 import SymbolPart from "./symbol-part";
+import { createSuit } from "./symbol-grid";
 
 interface SymbolProps {
-    suit: number[]
+    suit?: number[]
 }
 
 const Symbol = ({ suit }: SymbolProps) => {
 
     const [selected, setSelected] = useState(false)
+
+    if (!suit)
+        suit = createSuit()
 
     const suitTopLeft: number[] = suit.slice(0, 9)
     const suitTopRight: number[] = suit.slice(9, 18)
@@ -29,7 +33,7 @@ const Symbol = ({ suit }: SymbolProps) => {
 
         setSelected(!selected)
     }
-    
+
     return (
         <button
             onClick={handleOnClick}
@@ -46,5 +50,5 @@ const Symbol = ({ suit }: SymbolProps) => {
         </button>
     );
 }
- 
+
 export default Symbol;

@@ -9,7 +9,7 @@ interface SymbolGridProps {
     size: number
 }
 
-const createSuit = () => {
+export const createSuit = () => {
     const suit: number[] = []
 
     for (let i = 0; i < 36; i++) {
@@ -67,13 +67,13 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
                     onClick={start}
                     className="text-5xl border-4 px-4 py-2 rounded-xl bg-red-700"
                 >
-                        Start
+                    Start
                 </button>
             </div>
         )
     }
 
-    if (!isMounted) return null; 
+    if (!isMounted) return null;
 
     const handleOnClick = () => {
         if (!sessionStorage.getItem("matching-marks_1"))
@@ -105,7 +105,7 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
                                 />
                             ))
                         }
-                    </div>  
+                    </div>
                 ))
             }
         </div>
