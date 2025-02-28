@@ -1,28 +1,26 @@
 'use client'
 
+import { useClock } from "@/utils/hooks/useClock";
 import { toTime } from "@/utils/time";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-interface ClockProps {
-    initTime: number
-}
+const Clock = () => {
 
-const Clock = ({ initTime }: ClockProps) => {
-
-    const [time, setTime] = useState(initTime)
-
+    const clock = useClock((state) => state.clock)
+    const setClock = useClock((state) => state.setClock)
+    
     useEffect(() => {
-        if (time <= 0)
+        if (clock <= 0)
             return
         const intervalId = setInterval(() => {
-            setTime(time => time - 1)
+            setClock(clock - 1)
         }, 1000)
         return () => clearInterval(intervalId);
-    }, [time])
+    }, [clock, setClock])
 
     return (
         <p className="text-6xl">
-            {toTime(time)}
+            {toTime(clock)}
         </p>
     )
 }

@@ -10,5 +10,5 @@ const Score = () => {
         <p className="text-4xl">{`Score : ${score}`}</p>
     );
 }
- 
+
 export default Score;
