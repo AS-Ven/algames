@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Symbol from "./symbol";
+import { useScore } from "@/utils/hooks/useScore";
 
 interface SymbolGridProps {
     size: number
@@ -42,16 +43,13 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
 
     const [isMounted, setIsMounted] = useState(false);
     const [suit, setSuit] = useState(createSuitListWithPeer(size * size))
-    const [score, setScore] = useState(0)
     const [seed, setSeed] = useState(0)
+
+    const addScore = useScore((state) => state.addScore)
 
     useEffect(() => {
         setIsMounted(true)
     }, [isMounted])
-    
-    useEffect(() => {
-        sessionStorage.setItem("matching-marks_score", score.toString())
-    }, [score])
 
     if (!isMounted) return null; 
 
@@ -60,7 +58,7 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
             return
 
         if (sessionStorage.getItem("matching-marks_0") == sessionStorage.getItem("matching-marks_1"))
-            setScore(score + 1)
+            addScore(1)
 
         sessionStorage.removeItem("matching-marks_0")
         sessionStorage.removeItem("matching-marks_1")
