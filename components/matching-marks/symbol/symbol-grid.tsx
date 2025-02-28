@@ -47,6 +47,7 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
     const [seed, setSeed] = useState(0)
 
     const addScore = useScore((state) => state.addScore)
+    const resetScore = useScore((state) => state.resetScore)
     const clock = useClock((state) => state.clock)
     const setClock = useClock((state) => state.setClock)
 
@@ -56,6 +57,7 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
 
     const start = () => {
         setClock(90)
+        resetScore()
     }
 
     if (clock == 0) {
