@@ -17,7 +17,7 @@ const SymbolPart = ({ size = 3, suit }: SymbolPartProps) => {
                                     className={`
                                         w-2 h-2 flex
                                         ${suit[`${3 * i + j}`] == 1 ? 'bg-white' : ''}
-                                        `}
+                                    `}
                                 ></div>
                             ))
                         }

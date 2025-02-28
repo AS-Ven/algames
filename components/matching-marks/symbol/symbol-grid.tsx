@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Symbol from "./symbol";
 import { useScore } from "@/utils/hooks/useScore";
+import { useClock } from "@/utils/hooks/useClock";
 
 interface SymbolGridProps {
     size: number
@@ -46,10 +47,31 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
     const [seed, setSeed] = useState(0)
 
     const addScore = useScore((state) => state.addScore)
+    const resetScore = useScore((state) => state.resetScore)
+    const clock = useClock((state) => state.clock)
+    const setClock = useClock((state) => state.setClock)
 
     useEffect(() => {
         setIsMounted(true)
     }, [isMounted])
+
+    const start = () => {
+        setClock(90)
+        resetScore()
+    }
+
+    if (clock == 0) {
+        return (
+            <div>
+                <button
+                    onClick={start}
+                    className="text-5xl border-4 px-4 py-2 rounded-xl bg-red-700"
+                >
+                        Start
+                </button>
+            </div>
+        )
+    }
 
     if (!isMounted) return null; 
 
@@ -88,8 +110,6 @@ const SymbolGrid = ({ size }: SymbolGridProps) => {
             }
         </div>
     );
-
-    //#endregion
 }
 
 export default SymbolGrid;
