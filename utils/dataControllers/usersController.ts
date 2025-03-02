@@ -3,6 +3,7 @@
 import { neon } from '@neondatabase/serverless';
 import { comparePassword, hashPassword } from '../bcrypt';
 import { createTableUsers } from './create-table';
+import { clearCookie, setCookie } from '../cookie';
 
 const database = process.env.DATABASE_URL
 
@@ -41,6 +42,7 @@ export const createUser = async (formData: FormData) => {
         return
 
     await sql(`INSERT INTO users(name, password) VALUES ('${name}', '${password}')`)
+    await logIn(formData)
 }
 
 //#endregion
@@ -110,7 +112,7 @@ export const logIn = async (formData: FormData) => {
         return
     
     const user = await sql(`SELECT * FROM users WHERE name = '${name}'`)
-    console.log(user[0]);
+    await setCookie('user', user[0].id)
 }
 
 //#endregion
@@ -119,7 +121,7 @@ export const logIn = async (formData: FormData) => {
 //#region Log Out
 
 export const logOut = async () => {
-    console.log('log out');
+    await clearCookie('user')
 }
 
 //#endregion
