@@ -1,38 +1,23 @@
 'use client'
 
 import { useState } from "react";
-import SignIn from "../forms/sign-in";
-import LogIn from "../forms/log-in";
+import Connection from "../forms/connection";
+import { User } from "lucide-react";
 
 const Profile = () => {
 
-    const [active, setActive] = useState(true)
-    const [login, setLogin] = useState(false)
+    const [active, setActive] = useState(false)
 
     const handleShowForm = () => {
         setActive(!active)
     }
 
-    const handleChangeForm = () => {
-        setLogin(!login)
-    }
-
     return (
-        <div className="flex justify-center items-center">
-            <button onClick={handleShowForm} className="border-4 px-2 rounded-full">P</button>
+        <div className="absolute flex flex-col justify-center items-center">
+            <button onClick={handleShowForm} className="border-2 p-1 rounded-full"><User/></button>
 
-            <div className={`${active ? "" : "hidden"} absolute top-1/3`}>
-                <div
-                    className={`${login ? "hidden" : ""} bg-slate-600 text-black`}
-                    >
-                    <SignIn/>
-                </div>
-                <div
-                    className={`${login ? "" : "hidden"} bg-slate-600 text-black`}
-                    >
-                    <LogIn/>
-                </div>
-                <button onClick={handleChangeForm}>{login ? "Sign In" : "Log In"}</button>
+            <div className={`${active ? "" : "hidden"} flex justify-center items-center`}>
+                <Connection/>
             </div>
         </div>
     );
