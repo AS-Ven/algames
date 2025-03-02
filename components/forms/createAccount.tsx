@@ -1,6 +1,6 @@
 'use client'
 
-import { createUser } from '@/utils/dataController';
+import { createUser } from '@/utils/dataControllers/usersController';
 import Form from 'next/form'
 
 const CreateAccount = () => {
