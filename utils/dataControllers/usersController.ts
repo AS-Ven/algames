@@ -1,7 +1,7 @@
 'use server'
 
 import { neon } from '@neondatabase/serverless';
-import { hashPassword } from '../bcrypt';
+import { comparePassword, hashPassword } from '../bcrypt';
 import { createTableUsers } from './create-table';
 
 const database = process.env.DATABASE_URL
@@ -36,8 +36,6 @@ export const createUser = async (formData: FormData) => {
     
     const sql = neon(database);
     await createTableUsers()
-
-    console.log(await checkName(name.toString()));
     
     if (await checkName(name.toString()))
         return
@@ -53,7 +51,7 @@ export const createUser = async (formData: FormData) => {
 export const readUser = async (id: number) => {
     if (!database)
         return console.error('Database not found');
-    
+
     const sql = neon(database);
     return await sql(`SELECT * FROM users WHERE id = '${id}'`)
 }
@@ -91,8 +89,28 @@ export const deleteUser = async (id: number) => {
 
 //#region Log In
 
-export const logIn = async () => {
-    console.log('log in');
+export const logIn = async (formData: FormData) => {
+    if (!database)
+        return console.error('Database not found');
+
+    const password = formData.get('password')
+    const name = formData.get('name')
+    if (!password || !name)
+        return console.error('Form incomplete');
+    
+    const sql = neon(database);
+    await createTableUsers()
+    
+    if (await checkName(name.toString()))
+        return
+    
+    const dbPassword = await sql(`SELECT password FROM users WHERE name = '${name}'`)
+    
+    if (!await comparePassword(password.toString(), dbPassword[0].password.toString()))
+        return
+    
+    const user = await sql(`SELECT * FROM users WHERE name = '${name}'`)
+    console.log(user[0]);
 }
 
 //#endregion

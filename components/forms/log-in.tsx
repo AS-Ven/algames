@@ -1,11 +1,11 @@
 'use client'
 
-import { createUser } from '@/utils/dataControllers/usersController';
+import { logIn } from '@/utils/dataControllers/usersController';
 import Form from 'next/form'
 
-const CreateAccount = () => {
+const LogIn = () => {
     return (
-        <Form action={createUser}>
+        <Form action={logIn}>
             <div>
                 <label htmlFor="">Name</label>
                 <input type="text" name='name'/>
@@ -14,9 +14,9 @@ const CreateAccount = () => {
                 <label htmlFor="">Password</label>
                 <input type="text" name='password'/>
             </div>
-            <button type='submit'>Sign in</button>
+            <button type='submit'>Log in</button>
         </Form>
     );
 }
- 
-export default CreateAccount;
+
+export default LogIn;
