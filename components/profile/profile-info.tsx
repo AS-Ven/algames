@@ -1,5 +1,6 @@
 'use client'
 
+import { logOut } from "@/utils/dataControllers/dbControllers/usersController";
 import { useProfile } from "@/utils/hooks/useProfile";
 import { Tuser } from "@/utils/type";
 
@@ -21,6 +22,7 @@ const ProfileInfo = ({ user }: ProfileInfoProps) => {
             <div className="flex flex-col justify-center items-center">
                 <p className="text-xl">Best Score : {user.matching_marks[0]}</p>
             </div>
+            <button onClick={logOut} className="bg-gray-800 rounded-full px-2 py-1">Log out</button>
         </div>
     );
 }

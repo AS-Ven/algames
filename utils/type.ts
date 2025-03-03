@@ -12,3 +12,9 @@ export type Tuser = {
     title: string,
     matching_marks: number[]
 }
+
+export type Tmatching_marks = {
+    id: number,
+    name: string,
+    score: number
+}
