@@ -3,6 +3,7 @@
 import HomeButton from "../buttons/home";
 import { usePathname } from "next/navigation";
 import ProfileButton from "../buttons/profile";
+import RankButton from "../buttons/rank";
 
 const Menu = () => {
 
@@ -19,7 +20,10 @@ const Menu = () => {
         return (
             <nav className="flex justify-between px-4">
                 <HomeButton/>
-                <ProfileButton/>
+                <div className="flex gap-4">
+                    <RankButton/>
+                    <ProfileButton/>
+                </div>
             </nav>
         );
 }

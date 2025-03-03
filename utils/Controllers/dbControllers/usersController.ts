@@ -1,9 +1,9 @@
 'use server'
 
 import { neon } from '@neondatabase/serverless';
-import { comparePassword, hashPassword } from '../bcrypt';
-import { clearCookie, setCookie } from '../cookie';
-import { TcompleteUser } from '../../type';
+import { comparePassword, hashPassword } from '../dataControllers/bcrypt';
+import { clearCookie, getCookie, setCookie } from '../dataControllers/cookie';
+import { TcompleteUser, Tuser } from '../../type';
 
 const database = process.env.DATABASE_URL
 
@@ -60,12 +60,29 @@ export const readUser = async (id: number): Promise<TcompleteUser | undefined> =
 
 //#endregion
 
+
+//#region Get User
+
+export const getUser = async (): Promise<Tuser | undefined> => {
+    if (!database)
+        return console.error('Database not found') as undefined;
+
+    const cookie = await getCookie('user')
+    const user = await readUser(parseInt(cookie ?? "0"))
+    if (!user)
+        return
+    return user as Tuser
+}
+
 //#endregion
 
 
-//#region Update
+//#endregion
 
-export const updateUser = async (id: number, name: string) => {
+
+//#region Update Name
+
+export const updateUserName = async (id: number, name: string) => {
     if (!database)
         return console.error('Database not found');
     if (await checkName(name))
@@ -73,6 +90,19 @@ export const updateUser = async (id: number, name: string) => {
 
     const sql = neon(database);
     await sql(`UPDATE users SET name = '${name}' WHERE id = '${id}'`)
+}
+
+//#endregion
+
+
+//#region Update Score
+
+export const updateUserScore = async (id: number, table: string, score: number) => {
+    if (!database)
+        return console.error('Database not found');
+
+    const sql = neon(database);
+    await sql(`UPDATE users SET ${table} = '${score}' WHERE id = '${id}'`)
 }
 
 //#endregion

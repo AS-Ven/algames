@@ -8,6 +8,7 @@ export type TcompleteUser = {
 }
 
 export type Tuser = {
+    id: number,
     name: string,
     title: string,
     matching_marks: number[]

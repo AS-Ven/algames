@@ -1,5 +1,5 @@
 import Clock from "@/components/matching-marks/clock";
-import Score from "@/components/matching-marks/score";
+import Score from "@/components/matching-marks/rank/score";
 import SymbolGrid from "@/components/matching-marks/symbol/symbol-grid";
 
 const MatchingMarks = () => {
