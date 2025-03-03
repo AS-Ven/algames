@@ -11,13 +11,13 @@ const Menu = () => {
 
     if (url == "/")
         return (
-            <nav className="flex justify-end px-2">
+            <nav className="flex justify-end px-4">
                 <Profile/>
             </nav>
         );
     else 
         return (
-            <nav className="flex justify-between px-2">
+            <nav className="flex justify-between px-4">
                 <HomeButton/>
                 <Profile/>
             </nav>
