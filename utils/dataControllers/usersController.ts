@@ -107,9 +107,10 @@ export const logIn = async (formData: FormData) => {
         return
     
     const dbPassword = await sql(`SELECT password FROM users WHERE name = '${name}'`)
-    
+
     if (!await comparePassword(password.toString(), dbPassword[0].password.toString()))
         return
+
     
     const user = await sql(`SELECT * FROM users WHERE name = '${name}'`)
     await setCookie('user', user[0].id)

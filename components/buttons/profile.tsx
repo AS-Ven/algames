@@ -3,10 +3,9 @@
 import { CircleUser } from "lucide-react";
 import { useConnection } from "@/utils/hooks/useConnection";
 
-const Profile = () => {
+const ProfileButton = () => {
 
     const setConnection = useConnection((state) => state.setConnection)
-    
 
     const handleShowForm = () => {
         setConnection()
@@ -17,4 +16,4 @@ const Profile = () => {
     );
 }
  
-export default Profile;
+export default ProfileButton;

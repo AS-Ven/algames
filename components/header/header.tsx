@@ -1,4 +1,4 @@
-import Connection from "@/components/forms/connection";
+import Profile from "../profile/profile";
 import Menu from "./menu";
 
 const Header = () => {
@@ -7,7 +7,7 @@ const Header = () => {
         <header className="absolute w-screen top-4">
             <Menu/>
             <div className="flex justify-center items-center">
-                <Connection/>
+                <Profile/>
             </div>
         </header>
     );

@@ -5,7 +5,7 @@ import { useConnection } from '@/utils/hooks/useConnection';
 import Form from 'next/form'
 import { useState } from 'react';
 
-const Connection = () => {
+const ProfileForm = () => {
 
     const [connect, setConnect] = useState(false)
     const connection = useConnection((state) => state.connection)
@@ -20,8 +20,8 @@ const Connection = () => {
                 onClick={handleChangeForm}
                 className='flex justify-between my-2 gap-2 text-xl'
             >
-                <p className={`${connect ? "" : "bg-gray-800"} px-4 py-1 rounded-full`}>Sign In</p>
-                <p className={`${connect ? "bg-gray-800" : ""} px-4 py-1 rounded-full`}>Log In</p>
+                <p className={`${connect ? "" : "bg-gray-800"} px-4 py-1 rounded-full`}>Log In</p>
+                <p className={`${connect ? "bg-gray-800" : ""} px-4 py-1 rounded-full`}>Sign In</p>
             </button>
             <Form action={connect ? createUser : logIn} className='flex flex-col justify-center items-center gap-8 py-2'>
                 <div className='flex flex-col justify-between px-2 gap-4'>
@@ -46,4 +46,4 @@ const Connection = () => {
     );
 }
 
-export default Connection;
+export default ProfileForm;
