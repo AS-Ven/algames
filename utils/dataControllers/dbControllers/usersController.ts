@@ -3,7 +3,7 @@
 import { neon } from '@neondatabase/serverless';
 import { comparePassword, hashPassword } from '../bcrypt';
 import { clearCookie, setCookie } from '../cookie';
-import { TcompleteUser } from '../type';
+import { TcompleteUser } from '../../type';
 
 const database = process.env.DATABASE_URL
 
