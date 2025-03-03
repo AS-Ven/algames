@@ -1,13 +1,27 @@
-import { CircleArrowLeft } from "lucide-react";
+'use client'
+
 import Profile from "../buttons/profile";
+import HomeButton from "../buttons/home";
+import { usePathname } from "next/navigation";
 
 const Menu = () => {
-    return (
-        <nav className="flex justify-between px-2">
-            <CircleArrowLeft size={40} strokeWidth={1.75}/>
-            <Profile/>
-        </nav>
-    );
+
+    const url = usePathname()
+
+
+    if (url == "/")
+        return (
+            <nav className="flex justify-end px-2">
+                <Profile/>
+            </nav>
+        );
+    else 
+        return (
+            <nav className="flex justify-between px-2">
+                <HomeButton/>
+                <Profile/>
+            </nav>
+        );
 }
 
 export default Menu
