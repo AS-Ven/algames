@@ -2,8 +2,8 @@
 
 import { neon } from '@neondatabase/serverless';
 import { comparePassword, hashPassword } from '../bcrypt';
-import { createTableUsers } from './create-table';
 import { clearCookie, setCookie } from '../cookie';
+import { TcompleteUser } from '../type';
 
 const database = process.env.DATABASE_URL
 
@@ -36,7 +36,6 @@ export const createUser = async (formData: FormData) => {
     const password = await hashPassword(plainPassword.toString())
     
     const sql = neon(database);
-    await createTableUsers()
     
     if (await checkName(name.toString()))
         return
@@ -50,13 +49,16 @@ export const createUser = async (formData: FormData) => {
 
 //#region Read
 
-export const readUser = async (id: number) => {
+export const readUser = async (id: number): Promise<TcompleteUser | undefined> => {
     if (!database)
-        return console.error('Database not found');
+        return console.error('Database not found') as undefined;
 
     const sql = neon(database);
-    return await sql(`SELECT * FROM users WHERE id = '${id}'`)
+    const user = await sql(`SELECT * FROM users WHERE id = '${id}'`)
+    return user[0] as TcompleteUser
 }
+
+//#endregion
 
 //#endregion
 
@@ -101,7 +103,6 @@ export const logIn = async (formData: FormData) => {
         return console.error('Form incomplete');
     
     const sql = neon(database);
-    await createTableUsers()
     
     if (await checkName(name.toString()))
         return

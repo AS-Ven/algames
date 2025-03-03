@@ -4,7 +4,7 @@ import { neon } from '@neondatabase/serverless';
 
 const database = process.env.DATABASE_URL
 
-export const createTableUsers = async () => {
+const createTableUsers = async () => {
     if (!database)
         return console.error('Database not found');
 
@@ -14,13 +14,14 @@ export const createTableUsers = async () => {
             id SERIAL PRIMARY KEY,
             name VARCHAR(25) UNIQUE,
             password VARCHAR(255),
-            role VARCHAR(255) DEFAULT 'user',
-            matching_marks integer[]
+            title VARCHAR(255) DEFAULT '',
+            icon INTEGER DEFAULT 0,
+            matching_marks INTEGER[] DEFAULT '{0, 0}'
         )    
     `)
 }
 
-export const createTableMatchingMarks = async () => {
+const createTableMatchingMarks = async () => {
     if (!database)
         return console.error('Database not found');
 
@@ -32,4 +33,9 @@ export const createTableMatchingMarks = async () => {
             score integer
         )    
     `)
+}
+
+export const createTables = async () => {
+    await createTableUsers()
+    await createTableMatchingMarks()
 }

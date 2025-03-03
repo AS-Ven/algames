@@ -24,6 +24,6 @@ export const getCookie = async (name: string) => {
     const cookie = await cookies();
     const data = cookie.get(name)?.value
     if (!data)
-        return console.error('Cookie was delicious...');
+        return
     return await decrypt(data)
 }

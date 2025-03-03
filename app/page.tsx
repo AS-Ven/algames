@@ -1,4 +1,10 @@
+'use server'
+
+import { createTables } from "@/utils/dataControllers/tablesController";
+
 const Home = async () => {
+
+  await createTables()
 
   return (
     <main className="flex flex-col justify-center items-center h-screen">

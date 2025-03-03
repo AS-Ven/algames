@@ -1,21 +1,21 @@
 'use client'
 
 import { createUser, logIn } from '@/utils/dataControllers/usersController';
-import { useConnection } from '@/utils/hooks/useConnection';
+import { useProfile } from '@/utils/hooks/useProfile';
 import Form from 'next/form'
 import { useState } from 'react';
 
 const ProfileForm = () => {
 
     const [connect, setConnect] = useState(false)
-    const connection = useConnection((state) => state.connection)
+    const profile = useProfile((state) => state.profile)
 
     const handleChangeForm = () => {
         setConnect(!connect)
     }
 
     return (
-        <div className={`${connection ? '' : 'hidden'} absolute top-40 border-4 p-2 rounded-xl overflow-hidden backdrop-blur-lg gap-4 flex flex-col justify-center items-center`}>
+        <div className={`${profile ? '' : 'hidden'} absolute top-40 border-4 p-2 rounded-xl overflow-hidden backdrop-blur-lg gap-4 flex flex-col justify-center items-center`}>
             <button
                 onClick={handleChangeForm}
                 className='flex justify-between my-2 gap-2 text-xl'

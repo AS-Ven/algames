@@ -9,7 +9,7 @@ const Profile = async () => {
     const user = await readUser(cookie ? parseInt(cookie) : 0)
 
     if (user)
-        return <ProfileInfo/>
+        return <ProfileInfo user={user}/>
     else
         return <ProfileForm/>
 }

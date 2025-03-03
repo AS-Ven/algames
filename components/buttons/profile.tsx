@@ -1,14 +1,14 @@
 'use client'
 
 import { CircleUser } from "lucide-react";
-import { useConnection } from "@/utils/hooks/useConnection";
+import { useProfile } from "@/utils/hooks/useProfile";
 
 const ProfileButton = () => {
 
-    const setConnection = useConnection((state) => state.setConnection)
+    const setProfile = useProfile((state) => state.setProfile)
 
     const handleShowForm = () => {
-        setConnection()
+        setProfile()
     }
 
     return (
