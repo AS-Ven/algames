@@ -97,9 +97,14 @@ export const updateUserName = async (id: number, name: string) => {
 
 //#region Update Score
 
-export const updateUserScore = async (id: number, table: string, score: number) => {
+export const updateUserScore = async (table: string, score: number) => {
     if (!database)
         return console.error('Database not found');
+
+    const user = await getUser()
+    if (!user)
+        return
+    const id = user.id
 
     const sql = neon(database);
     await sql(`UPDATE users SET ${table} = '${score}' WHERE id = '${id}'`)

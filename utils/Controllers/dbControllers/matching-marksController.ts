@@ -6,22 +6,25 @@ import { getUser } from "./usersController";
 
 const database = process.env.DATABASE_URL
 
-//#region Create
+//#region Add Score
 
 export const addScore = async (score: number) => {
     if (!database)
         return console.error('Database not found');
-    let name = ""
-
+    const ranking = await readRanking()
+    if (!ranking)
+        return console.error('No Rank');
+    
+    let user_id: number
     const user = await getUser()
     if (!user)
-        name = "Unknow"
+        user_id = 0
     else
-        name = user.name
+        user_id = user.id
 
     const sql = neon(database);
-    
-    await sql(`INSERT INTO matching_marks(name, score) VALUES ('${name}', '${score}')`)
+    await deleteScore(ranking[9].id)
+    await sql(`INSERT INTO matching_marks(user_id, score) VALUES ('${user_id}', '${score}')`)
 }
 
 //#endregion
@@ -34,8 +37,8 @@ export const readRanking = async (): Promise<Tmatching_marks[] | undefined> => {
         return console.error('Database not found') as undefined;
 
     const sql = neon(database);
-    const ranking = await sql(`SELECT * FROM matching_marks ORDER BY score [ASC | DESC]`)
-    return ranking[0] as Tmatching_marks[]
+    const ranking = await sql(`SELECT * FROM matching_marks ORDER BY score DESC`)
+    return ranking as Tmatching_marks[]
 }
 
 //#endregion
