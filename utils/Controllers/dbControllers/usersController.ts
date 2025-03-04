@@ -1,9 +1,9 @@
 'use server'
 
 import { neon } from '@neondatabase/serverless';
-import { comparePassword, hashPassword } from '../bcrypt';
-import { createTableUsers } from './create-table';
-import { clearCookie, setCookie } from '../cookie';
+import { comparePassword, hashPassword } from '../dataControllers/bcrypt';
+import { clearCookie, getCookie, setCookie } from '../dataControllers/cookie';
+import { TcompleteUser, Tuser } from '../../type';
 
 const database = process.env.DATABASE_URL
 
@@ -36,7 +36,6 @@ export const createUser = async (formData: FormData) => {
     const password = await hashPassword(plainPassword.toString())
     
     const sql = neon(database);
-    await createTableUsers()
     
     if (await checkName(name.toString()))
         return
@@ -50,20 +49,40 @@ export const createUser = async (formData: FormData) => {
 
 //#region Read
 
-export const readUser = async (id: number) => {
+export const readUser = async (id: number): Promise<TcompleteUser | undefined> => {
     if (!database)
-        return console.error('Database not found');
+        return console.error('Database not found') as undefined;
 
     const sql = neon(database);
-    return await sql(`SELECT * FROM users WHERE id = '${id}'`)
+    const user = await sql(`SELECT * FROM users WHERE id = '${id}'`)
+    return user[0] as TcompleteUser
 }
 
 //#endregion
 
 
-//#region Update
+//#region Get User
 
-export const updateUser = async (id: number, name: string) => {
+export const getUser = async (): Promise<Tuser | undefined> => {
+    if (!database)
+        return console.error('Database not found') as undefined;
+
+    const cookie = await getCookie('user')
+    const user = await readUser(parseInt(cookie ?? "0"))
+    if (!user)
+        return
+    return user as Tuser
+}
+
+//#endregion
+
+
+//#endregion
+
+
+//#region Update Name
+
+export const updateUserName = async (id: number, name: string) => {
     if (!database)
         return console.error('Database not found');
     if (await checkName(name))
@@ -71,6 +90,24 @@ export const updateUser = async (id: number, name: string) => {
 
     const sql = neon(database);
     await sql(`UPDATE users SET name = '${name}' WHERE id = '${id}'`)
+}
+
+//#endregion
+
+
+//#region Update Score
+
+export const updateUserScore = async (table: string, score: number) => {
+    if (!database)
+        return console.error('Database not found');
+
+    const user = await getUser()
+    if (!user)
+        return
+    const id = user.id
+
+    const sql = neon(database);
+    await sql(`UPDATE users SET ${table} = '${score}' WHERE id = '${id}'`)
 }
 
 //#endregion
@@ -101,15 +138,15 @@ export const logIn = async (formData: FormData) => {
         return console.error('Form incomplete');
     
     const sql = neon(database);
-    await createTableUsers()
     
     if (await checkName(name.toString()))
         return
     
     const dbPassword = await sql(`SELECT password FROM users WHERE name = '${name}'`)
-    
+
     if (!await comparePassword(password.toString(), dbPassword[0].password.toString()))
         return
+
     
     const user = await sql(`SELECT * FROM users WHERE name = '${name}'`)
     await setCookie('user', user[0].id)

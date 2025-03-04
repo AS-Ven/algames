@@ -9,7 +9,7 @@ const Start = () => {
     const setClock = useClock((state) => state.setClock)
 
     const handleOnClick = () => {
-        setClock(90)
+        setClock(10)
         resetScore()
     }
 

@@ -1,26 +1,19 @@
 'use client'
 
-import { useState } from "react";
-import Connection from "../forms/connection";
-import { User } from "lucide-react";
+import { CircleUser } from "lucide-react";
+import { useProfile } from "@/utils/hooks/useProfile";
 
-const Profile = () => {
+const ProfileButton = () => {
 
-    const [active, setActive] = useState(false)
+    const setProfile = useProfile((state) => state.setProfile)
 
     const handleShowForm = () => {
-        setActive(!active)
+        setProfile()
     }
 
     return (
-        <div className="absolute flex flex-col justify-center items-center">
-            <button onClick={handleShowForm} className="border-2 p-1 rounded-full"><User/></button>
-
-            <div className={`${active ? "" : "hidden"} flex justify-center items-center`}>
-                <Connection/>
-            </div>
-        </div>
+        <button onClick={handleShowForm}><CircleUser size={40} strokeWidth={1.75}/></button>
     );
 }
  
-export default Profile;
+export default ProfileButton;
