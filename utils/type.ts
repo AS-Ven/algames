@@ -16,6 +16,7 @@ export type Tuser = {
 
 export type Tmatching_marks = {
     id: number,
-    name: string,
+    user_id: number,
+    name?: string,
     score: number
 }
