@@ -23,7 +23,8 @@ export const addScore = async (score: number) => {
         user_id = user.id
 
     const sql = neon(database);
-    await deleteScore(ranking[9].id)
+    if (ranking[9])
+        await deleteScore(ranking[9].id)
     await sql(`INSERT INTO matching_marks(user_id, score) VALUES ('${user_id}', '${score}')`)
 }
 

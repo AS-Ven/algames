@@ -33,17 +33,6 @@ const createTableMatchingMarks = async () => {
             score INTEGER
         );
     `)
-    await feedMatchingMarks()
-}
-
-const feedMatchingMarks = async () => {
-    if (!database)
-        return console.error('Database not found');
-
-    const sql = neon(database);
-    for (let i = 0; i < 10; i++) {
-        await sql(`INSERT INTO matching_marks(user_id, score) VALUES (0, 0)`)
-    }
 }
 
 export const createTables = async () => {
