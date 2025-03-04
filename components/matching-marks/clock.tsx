@@ -1,6 +1,6 @@
 'use client'
 
-import { AAAAAAAAA } from "@/utils/Controllers/dbControllers/scoreController";
+import { pushScore } from "@/utils/Controllers/dbControllers/scoreController";
 import { useClock } from "@/utils/hooks/useClock";
 import { useScore } from "@/utils/hooks/useScore";
 import { toTime } from "@/utils/time";
@@ -14,7 +14,7 @@ const Clock = () => {
     
     useEffect(() => {
         if (clock <= 0) {
-            AAAAAAAAA(score)
+            pushScore(score)
             return
         }
         const intervalId = setInterval(() => {
