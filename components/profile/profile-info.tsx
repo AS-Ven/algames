@@ -11,7 +11,6 @@ interface ProfileInfoProps {
 const ProfileInfo = ({ user }: ProfileInfoProps) => {
     
     const profile = useProfile((state) => state.profile)
-    
 
     return (
         <div className={`${profile ? '' : 'hidden'} absolute top-20 border-4 p-4 px-8 rounded-xl overflow-hidden backdrop-blur-lg gap-4 flex flex-col justify-center items-center`}>

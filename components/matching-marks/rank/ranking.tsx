@@ -1,28 +1,28 @@
-'use client'
+import { readRanking } from "@/utils/Controllers/dbControllers/matching-marksController";
+import { readUser } from "@/utils/Controllers/dbControllers/usersController";
+import RankingInfo from "./ranking-info";
 
-import { useRank } from "@/utils/hooks/useRank";
-import { Tmatching_marks } from "@/utils/type";
+const Ranking = async () => {
 
-interface RankingProps {
-    ranking: Tmatching_marks[]
-}
+    const rank = await readRanking()
+    if (!rank) {
+        return (
+            <div>Ranking is not available...</div>
+        )
+    }
+    for (let i = 0; i < rank.length; i++) {
+        const user = await readUser(rank[i].user_id)
+        let name: string
+        if (!user)
+            name = 'Unknow'
+        else
+        name = user.name
+    rank[i].name = name
+    }
 
-const Ranking = ({ ranking }: RankingProps) => {
-    
-    const rank = useRank((state) => state.rank)
-    
     return (
-        <div className={`${rank ? '' : 'hidden'} absolute top-20 border-4 p-4 px-8 rounded-xl overflow-hidden backdrop-blur-lg gap-4 flex flex-col justify-center items-center`}>
-            {
-                ranking.map((row, i) => (
-                    <div key={i} className="w-full flex justify-between items-center gap-20 text-xl">
-                        <p>{row.score}</p>
-                        <p>{row.name}</p>
-                    </div>
-                ))
-            }
-        </div>
-    );
+        <RankingInfo ranking={rank}/>
+    )
 }
- 
-export default Ranking;
+
+export default Ranking
