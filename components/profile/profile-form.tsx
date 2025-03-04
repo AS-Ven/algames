@@ -31,6 +31,8 @@ const ProfileForm = () => {
                         autoComplete='username'
                         placeholder='Username'
                         className='rounded-full px-2 text-gray-800'
+                        maxLength={25}
+                        required
                         />
                     <input
                         type="text"
@@ -38,6 +40,7 @@ const ProfileForm = () => {
                         autoComplete='off'
                         placeholder='Password'
                         className='rounded-full px-2 text-gray-800'
+                        required
                         />
                 </div>
                 <button type='submit' className='flex w-2/3 bg-gray-800 rounded-full justify-center text-2xl'>Submit</button>

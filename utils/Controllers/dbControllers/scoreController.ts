@@ -4,7 +4,6 @@ import { getUser, updateUserScore } from "./usersController"
 export const AAAAAAAAA = async (score: number) => {
     const user = await getUser()
     const ranking = await readRanking()
-    console.log(ranking);
     
     if (!user || !ranking)
         return
