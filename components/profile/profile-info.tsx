@@ -1,6 +1,6 @@
 'use client'
 
-import { logOut } from "@/utils/Controllers/dbControllers/usersController";
+import { logOut } from "@/Controllers/dbControllers/usersController";
 import { useProfile } from "@/utils/hooks/useProfile";
 import { Tuser } from "@/utils/type";
 

@@ -14,7 +14,7 @@ export type Tuser = {
     matching_marks: number[]
 }
 
-export type Tmatching_marks = {
+export type Tranking = {
     id: number,
     user_id: number,
     name?: string,
