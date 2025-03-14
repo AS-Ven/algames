@@ -1,8 +1,8 @@
 'use server'
 
-import { Tmatching_marks } from "@/utils/type";
 import { neon } from "@neondatabase/serverless";
 import { getUser } from "./usersController";
+import { Tranking } from "@/utils/type";
 
 const database = process.env.DATABASE_URL
 
@@ -38,13 +38,13 @@ export const addScore = async (score: number) => {
 
 //#region Read
 
-export const readRanking = async (): Promise<Tmatching_marks[] | undefined> => {
+export const readRanking = async (): Promise<Tranking[] | undefined> => {
     if (!database)
         return console.error('Database not found') as undefined;
 
     const sql = neon(database);
     const ranking = await sql(`SELECT * FROM matching_marks ORDER BY score DESC`)
-    return ranking as Tmatching_marks[]
+    return ranking as Tranking[]
 }
 
 //#endregion
