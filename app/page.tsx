@@ -1,6 +1,6 @@
 'use server'
 
-import { createTables } from "@/dbControllers/tablesController";
+import { createTables } from "@/controllers/dbControllers/tablesController";
 
 
 const Home = async () => {
