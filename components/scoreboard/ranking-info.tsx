@@ -1,10 +1,10 @@
 'use client'
 
 import { useRank } from "@/utils/hooks/useRank";
-import { Tmatching_marks } from "@/utils/type";
+import { Tranking } from "@/utils/type";
 
 interface RankingProps {
-    ranking: Tmatching_marks[]
+    ranking: Tranking[]
 }
 
 const RankingInfo = ({ ranking }: RankingProps) => {

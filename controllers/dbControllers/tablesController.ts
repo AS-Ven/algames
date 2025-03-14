@@ -17,7 +17,7 @@ const createTableUsers = async () => {
             title VARCHAR(255) DEFAULT '',
             icon INTEGER DEFAULT 0,
             matching_marks INTEGER[2] DEFAULT '{0, 0}'
-        )    
+        );
     `)
 }
 

@@ -1,7 +1,7 @@
-import { getCookie } from "@/utils/Controllers/dataControllers/cookie";
+import { getCookie } from "@/controllers/dataControllers/cookie";
 import ProfileForm from "./profile-form";
-import { readUser } from "@/utils/Controllers/dbControllers/usersController";
 import ProfileInfo from "./profile-info";
+import { readUser } from "@/controllers/dbControllers/usersController";
 
 const Profile = async () => {
 
