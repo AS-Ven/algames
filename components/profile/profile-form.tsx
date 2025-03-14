@@ -1,6 +1,6 @@
 'use client'
 
-import { createUser, logIn } from '@/Controllers/dbControllers/usersController';
+import { createUser, logIn } from '@/controllers/dbControllers/usersController';
 import { useProfile } from '@/utils/hooks/useProfile';
 import Form from 'next/form'
 import { useState } from 'react';

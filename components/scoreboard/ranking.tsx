@@ -1,6 +1,6 @@
-import { readRanking } from "@/Controllers/dbControllers//matching-marksController";
-import { readUser } from "@/Controllers/dbControllers//usersController";
+import { readRanking } from "@/controllers/dbControllers/matching-marksController";
 import RankingInfo from "./ranking-info";
+import { readUser } from "@/controllers/dbControllers/usersController";
 
 const Ranking = async () => {
 
@@ -12,7 +12,7 @@ const Ranking = async () => {
 
     for (let i = 0; i < rank.length; i++) {
         const user = await readUser(rank[i].user_id)
-        const name = user.name ?? 'Unknow'
+        const name = user?.name ?? 'Unknow'
         rank[i].name = name
     }
 
