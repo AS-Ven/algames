@@ -1,6 +1,6 @@
 'use client'
 
-import { pushScore } from "@/controller/dbControllers/scoreController";
+import { pushScore } from "@/controllers/dbControllers/scoreController";
 import { useClock } from "@/utils/hooks/useClock";
 import { useScore } from "@/utils/hooks/useScore";
 import { toTime } from "@/utils/time";

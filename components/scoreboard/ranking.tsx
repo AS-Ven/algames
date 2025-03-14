@@ -1,6 +1,6 @@
-import { readRanking } from "@/controller/dbControllers/matching-marksController";
+import { readRanking } from "@/controllers/dbControllers/matching-marksController";
 import RankingInfo from "./ranking-info";
-import { readUser } from "@/controller/dbControllers/usersController";
+import { readUser } from "@/controllers/dbControllers/usersController";
 
 const Ranking = async () => {
 
