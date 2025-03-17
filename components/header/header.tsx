@@ -1,4 +1,4 @@
-import Ranking from "../matching-marks/rank/ranking";
+import Ranking from "../scoreboard/ranking";
 import Profile from "../profile/profile";
 import Menu from "./menu";
 

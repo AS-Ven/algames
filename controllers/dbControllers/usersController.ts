@@ -1,9 +1,9 @@
 'use server'
 
 import { neon } from '@neondatabase/serverless';
+import { TcompleteUser, Tuser } from '@/utils/type';
 import { comparePassword, hashPassword } from '../dataControllers/bcrypt';
 import { clearCookie, getCookie, setCookie } from '../dataControllers/cookie';
-import { TcompleteUser, Tuser } from '../../type';
 
 const database = process.env.DATABASE_URL
 

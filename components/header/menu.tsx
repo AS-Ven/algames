@@ -1,9 +1,9 @@
 'use client'
 
-import HomeButton from "../buttons/home";
+import HomeButton from "./buttons/home";
 import { usePathname } from "next/navigation";
-import ProfileButton from "../buttons/profile";
-import RankButton from "../buttons/rank";
+import ProfileButton from "../profile/profile-btn";
+import RankButton from "../scoreboard/rank-btn";
 
 const Menu = () => {
 

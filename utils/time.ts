@@ -5,5 +5,5 @@ export const toTime = (sec_num: number) => {
     return `
         ${minutes < 10 ? `0${minutes}` : minutes} :
         ${seconds < 10 ? `0${seconds}` : seconds}
-        `
+    `
 }
